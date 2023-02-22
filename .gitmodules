@@ -1,0 +1,15 @@
+[submodule "luci-theme-argon"]
+	path = luci-theme-argon
+	url = https://github.com/jerrykuku/luci-theme-argon.git
+[submodule "luci-theme-darkmatter"]
+	path = luci-theme-darkmatter
+	url = https://github.com/apollo-ng/luci-theme-darkmatter.git
+[submodule "luci-theme-design"]
+	path = luci-theme-design
+	url = https://github.com/gngpp/luci-theme-design.git
+[submodule "luci-theme-edge"]
+	path = luci-theme-edge
+	url = https://github.com/kiddin9/luci-theme-edge.git
+[submodule "luci-theme-neobird"]
+	path = luci-theme-neobird
+	url = https://github.com/thinktip/luci-theme-neobird.git
