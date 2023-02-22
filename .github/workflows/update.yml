@@ -17,11 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: 'true'
+          submodules: 'recursive'
 
       - name: Get Time
         id: time
-        run: echo "::set-output name=now::$(date +'%Y-%m-%dT%H:%M:%S')"
+        run: echo "::set-state name=now::$(date +'%Y-%m-%dT%H:%M:%S')"
 
       - name: Submodule
         run: |
