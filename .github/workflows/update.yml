@@ -27,6 +27,7 @@ jobs:
 
       - name: Submodule
         run: |
+          rm -rf .git/modules
           git submodule update --init --recursive
       
       - name: Deploy
