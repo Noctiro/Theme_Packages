@@ -14,6 +14,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
         with:
@@ -33,8 +35,6 @@ jobs:
           personal_token: ${{ secrets.DEPLOY_KEY }}
           publish_branch: main
           publish_dir: ./
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@github.com'
           keep_files: true
           enable_jekyll: false
           commit_message: ${{ steps.time.outputs.now }}
