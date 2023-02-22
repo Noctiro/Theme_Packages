@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - run: git submodule update
+      - run: git submodule update --init --recursive
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
