@@ -19,8 +19,7 @@ jobs:
       
       - name: Submodule
         run: |
-          git submodule init
-          git submodule update
+          git submodule update --init --recursive
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
