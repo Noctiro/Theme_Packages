@@ -2,7 +2,7 @@
 repo () {
 rm -rf $1
 git clone -b $3 $2 $1
-rm -rf $1/.git*
+rm -rf $1/.git
 }
 
 repo "luci-theme-argon" "https://github.com/jerrykuku/luci-theme-argon.git" "master"
