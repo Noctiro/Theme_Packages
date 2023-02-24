@@ -28,7 +28,6 @@ jobs:
         
       - name: Deploy
         run: |
-          # git remote add origin https://x-access-token:${{ secrets.DEPLOY_KEY }}@github.com/obcbo/theme_packages.git
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@github.com"
           git add --all
