@@ -1,0 +1,37 @@
+name: Update
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/update.yml'
+    branches:
+      - main
+  schedule:
+    - cron: 0 16 * * *
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get Time
+        id: time
+        run: echo "::set-state name=now::$(date +'%Y-%m-%dT%H:%M:%S')"
+
+      - name: Submodule
+        run: sh update.sh
+      
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEPLOY_KEY }}
+          publish_branch: main
+          publish_dir: ./
+          keep_files: true
+          enable_jekyll: false
+          commit_message: ${{ steps.time.outputs.now }}
