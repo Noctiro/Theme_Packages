@@ -18,11 +18,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
-
-      - name: Get Time
-        id: time
-        run: echo "::set-state name=now::$(date +'%Y-%m-%dT%H:%M:%S')"
-
+      
       - name: Submodule
         run: sh update.sh
         
@@ -31,6 +27,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@github.com"
           git add --all
-          git commit -m "${{ steps.time.outputs.now }}"
+          git commit -m "$(date +'%Y-%m-%dT%H:%M:%S')"
           git push
        
