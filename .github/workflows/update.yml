@@ -1,0 +1,37 @@
+name: Update
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/update.yml'
+    branches:
+      - main
+  schedule:
+    - cron: 0 16 * * *
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get Time
+        id: time
+        run: echo "::set-state name=now::$(date +'%Y-%m-%dT%H:%M:%S')"
+
+      - name: Submodule
+        run: sh update.sh
+        
+      - name: Deploy
+        run: |
+          git remote add origin https://x-access-token:${{ secrets.DEPLOY_KEY }}@github.com/obcbo/theme_packages.git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@github.com"
+          git add --all
+          git commit -m "${{ steps.time.outputs.now }}"
+          git push
+       
