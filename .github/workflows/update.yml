@@ -21,8 +21,20 @@ jobs:
       
       - name: Submodule
         run: sh update.sh
-        
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected"
+            echo "::set-output name=push_required::false"
+          else
+            echo "Changes detected"
+            echo "::set-output name=push_required::true"
+          fi
+
       - name: Deploy
+        if: steps.check_changes.outputs.push_required == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@github.com"
